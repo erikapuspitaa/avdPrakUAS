@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Stress Classifier</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+  body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+  color: #333;
+}
+
+input, select {
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#predictionResult {
+  margin-top: 20px;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Survey Terkait Pengaruh Bermain Game Online dengan Kondisi Mental (Stress) </h1>
+        <form action="{{url_for('predict')}}" method="post">
+            <!-- Your form fields go here -->
+            
+            <label for="bermain_game">Apakah Anda bermain game online?</label>
+            <select name="bermain_game" required>
+              <option value="" selected disabled>Pilih opsi</option>
+              <option value="1">Ya</option>
+              <option value="0">Tidak</option>
+            </select>
+
+            <label for="durasi_bermain">Seberapa sering Anda bermain game online dalam sebulan terakhir?</label>
+            <select name="durasi_bermain" required>
+              <option value="" selected disabled>Pilih opsi</option>
+              <option value="4">Setiap hari</option>
+              <option value="3">Beberapa kali seminggu</option>
+              <option value="2">Sekali seminggu</option>
+              <option value="1">Jarang</option>
+              <option value="0">Tidak Pernah</option>
+            </select>
+            
+            <label for="durasi_waktu_bermain">Berapa lama waktu yang Anda habiskan setiap hari untuk bermain game online?</label>
+            <select name="durasi_waktu_bermain" required>
+              <option value="" selected disabled>Pilih opsi</option>
+              <option value="0">Kurang dari 30 menit</option>
+              <option value="1">30 menit - 1 jam</option>
+              <option value="2">1-2 jam</option>
+              <option value="3">Lebih dari 2 jam</option>
+            </select>
+
+              <label for="pilihan_pertama_stress">Apakah bermain game online menjadi pilihan pertama Anda ketika Anda merasa stres? atau apakah Anda memiliki metode lain yang Anda coba terlebih dahulu?</label>
+              <select name="pilihan_pertama_stress" required>
+                <option value="" selected disabled>Pilih opsi</option>
+                <option value="1">Ya</option>
+                <option value="0">Tidak</option>
+              </select>
+
+              <label for="membantu_mengalihkan_stress">Apakah Anda merasa bahwa bermain game online telah membantu Anda mengalihkan perhatian dari sumber stres yang sedang Anda alami?</label>
+              <select name="membantu_mengalihkan_stress" required>
+                <option value="" selected disabled>Pilih opsi</option>
+                <option value="4">Sangat membantu</option>
+                <option value="3">Membantu</option>
+                <option value="2">Netral</option>
+                <option value="1">Kurang membantu</option>
+                <option value="0">Tidak membantu</option>
+              </select>
+
+              <!-- <label for="klasifikasi">Bagaimana pendapat Anda tentang sejauh mana bermain game sebagai cara untuk menghilangkan stres merupakan alternatif yang sehat dan efektif?</label>
+              <select name="klasifikasi" required>
+                <option value="3">Sangat setuju</option>
+                <option value="2">Setuju</option>
+                <option value="1">Netral</option>
+                <option value="0">Tidak setuju</option>
+              </select>  -->
+
+
+              <div>
+                <button type="submit" class="btn btn-primary btn-block btn-large">
+                  Predict
+                </button>
+            </div>
+
+            
+                <div id="predictionResult">
+                  <h3>Hasil Prediksi:</h3>
+                  {{ prediction_text }}
+              </div>
+           
+
+            </form>
+            
+            
+          
+</body>
+
+</html>
